@@ -1,16 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { getIssuesList } from '../../api/issuesApi';
 import IssuesList from '../../components/issues/IssuesList';
 import Loading from '../../components/loading/Loading';
 import useRequests from '../../hooks/useRequests';
 import routerPaths from '../../router/routerPaths';
-import IssuesDetail from './IssuesDetail';
-
-const HEADER = {
-  ORGANIZATION_NAME: 'Facebook',
-  REPOSITORY_NAME: 'React',
-};
 
 const QUERY_PARAMS = {
   state: 'open',
@@ -23,10 +17,7 @@ const INIT_PAGE = 1;
 
 function Issues() {
   const [page, setPage] = useState(INIT_PAGE);
-  const { pathname } = useLocation();
   const navigate = useNavigate();
-  const param = useParams();
-  const id = param.id;
 
   const params = useMemo(() => {
     return {
@@ -37,7 +28,7 @@ function Issues() {
     };
   }, [page]);
 
-  const { issues, isLoading, isError, hasNextPage } = useRequests(params);
+  const { issues, isLoading, isError, hasNextPage } = useRequests(getIssuesList, params, routerPaths.issues.name);
 
   if (isError) {
     navigate('/error');
@@ -45,24 +36,10 @@ function Issues() {
 
   return (
     <>
-      <Header>
-        {HEADER.ORGANIZATION_NAME} / {HEADER.REPOSITORY_NAME}
-      </Header>
       {isLoading && <Loading />}
-      {pathname.startsWith(`${routerPaths.issues.path}/`) && id ? (
-        <IssuesDetail id={id} issues={issues} />
-      ) : (
-        <IssuesList issues={issues} hasNextPage={hasNextPage} setPage={setPage} />
-      )}
+      <IssuesList issues={issues} hasNextPage={hasNextPage} setPage={setPage} />
     </>
   );
 }
-
-const Header = styled.header`
-  font-weight: bold;
-  font-size: 32px;
-  margin: 0 0 40px;
-  border-bottom: 1px solid black;
-`;
 
 export default Issues;
