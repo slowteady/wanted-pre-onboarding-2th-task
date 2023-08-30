@@ -1,59 +1,50 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import styled from 'styled-components';
-import { getIssuesList } from '../../api/issuesApi';
 import AdBanner from '../../components/issues/AdBanner';
-import { ERROR_MESSAGES } from '../../utils/message/errorMessages';
-import IssuesItem from './IssuesItem';
+import IssuesItem from '../../components/issues/IssuesItem';
 
-const QUERY_PARAMS = {
-  state: 'open',
-  sort: 'comments',
-  direction: 'desc',
-  per_page: 10,
-};
+function IssuesList({ issues, hasNextPage, setPage }) {
+  const observer = useRef();
 
-function IssuesList() {
-  const [issues, setIssues] = useState([]);
-  const [page, setPage] = useState(1);
-
-  const params = useMemo(() => {
-    return {
-      params: {
-        ...QUERY_PARAMS,
-      },
-    };
-  }, []);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getIssuesList(params, page);
-        if (response.status === 200) {
-          setIssues((prevIssues) => [...prevIssues, ...response.data]);
-        } else {
-          const msg = response.data.message ? response.data.message : ERROR_MESSAGES.REQUEST_FAILED;
-          throw new Error(msg);
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          alert(`Error: ${err.message}`);
-        } else {
-          alert(ERROR_MESSAGES.REQUEST_FAILED);
-        }
+  const lastIssueRef = useCallback(
+    (node) => {
+      if (observer.current) {
+        observer.current.disconnect();
       }
-    }
-    fetchData();
-  }, [params, page]);
+      observer.current = new IntersectionObserver((node) => {
+        if (node[0].isIntersecting && hasNextPage) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      });
+
+      if (node) {
+        observer.current.observe(node);
+      }
+    },
+    [hasNextPage, setPage]
+  );
 
   return (
-    <Ul>{issues.map((issue, index) => ((index + 1) % 5 === 0 ? <AdBanner /> : <IssuesItem issues={issue} />))}</Ul>
+    <Ul>
+      {issues.map((issue, index) => {
+        if (issues.length === index + 1) {
+          return (index + 1) % 5 === 0 ? (
+            <AdBanner ref={lastIssueRef} key={index} />
+          ) : (
+            <IssuesItem ref={lastIssueRef} key={issue.number} issues={issue} />
+          );
+        }
+        return (index + 1) % 5 === 0 ? <AdBanner key={index} /> : <IssuesItem key={issue.number} issues={issue} />;
+      })}
+    </Ul>
   );
 }
 
 const Ul = styled.ul`
   max-height: 600px;
-  width: 650px;
+  width: 700px;
   padding: 0px;
+  overflow: auto;
 `;
 
 export default IssuesList;
