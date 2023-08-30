@@ -49,7 +49,7 @@ function Issues() {
       </Header>
       {isLoading && <Loading />}
       {pathname.startsWith('/issues/') && id ? (
-        <IssuesDetail issues={issues} />
+        <IssuesDetail id={id} issues={issues} />
       ) : (
         <IssuesList id={id} issues={issues} hasNextPage={hasNextPage} setPage={setPage} />
       )}
