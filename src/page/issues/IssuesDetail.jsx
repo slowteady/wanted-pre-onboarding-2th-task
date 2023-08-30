@@ -28,6 +28,7 @@ const IssueDetailDiv = styled.div`
   width: 700px;
   padding: 0px;
   overflow: auto;
+  margin-top: 16px;
 `;
 
 const IssueImgItemDiv = styled.div`
