@@ -14,7 +14,7 @@ function App() {
 
 const Wrap = styled.div`
   height: 100%;
-  margin: 120px 0;
+  margin: 100px 0;
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
