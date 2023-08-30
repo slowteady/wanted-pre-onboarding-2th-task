@@ -59,7 +59,7 @@ function useRequests(params) {
       }
     }
     fetchData();
-  }, [params, setIssues]);
+  }, [params]);
 
   return { issues, isLoading, isError, hasNextPage };
 }
