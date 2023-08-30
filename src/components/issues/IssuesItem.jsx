@@ -23,7 +23,7 @@ function IssuesItem({ issues }, ref) {
       <IssuesDiv>
         <IssuesNumTitleDiv>
           <IssueNumSpan>{number}</IssueNumSpan>
-          <IssueTitleSpan isIdExist={isIdExist} onClick={isIdExist ? undefined : naviDetail} title={title}>
+          <IssueTitleSpan data-isidexist={isIdExist} onClick={isIdExist ? undefined : naviDetail} title={title}>
             {title}
           </IssueTitleSpan>
         </IssuesNumTitleDiv>
@@ -66,7 +66,7 @@ const IssueNumSpan = styled.span`
 
 const IssueTitleSpan = styled.span`
   font-weight: bold;
-  cursor: ${(props) => (props.isIdExist ? 'auto' : 'pointer')};
+  cursor: ${(props) => (props['data-isidexist'] ? 'auto' : 'pointer')};
 `;
 
 const IssueDateWriterDiv = styled.div`
