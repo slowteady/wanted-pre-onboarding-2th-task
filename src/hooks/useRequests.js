@@ -1,8 +1,28 @@
 import { useEffect, useState } from 'react';
-import { getIssuesList } from '../api/issuesApi';
 import { ERROR_MESSAGES } from '../utils/message/errorMessages';
 
-function useRequests(params) {
+const changeObjProps = (issue) => {
+  const {
+    number,
+    title,
+    user: { login, avatar_url },
+    created_at,
+    comments,
+    body,
+  } = issue;
+
+  return {
+    number,
+    title,
+    login,
+    avatar_url,
+    created_at,
+    comments,
+    body,
+  };
+};
+
+function useRequests(fetchFunction, params) {
   const [issues, setIssues] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -14,31 +34,18 @@ function useRequests(params) {
       setIsError(false);
 
       try {
-        const response = await getIssuesList(params);
-        if (response.status === 200) {
+        const response = await fetchFunction(params);
+        if (response.status === 200 && Array.isArray(response.data)) {
           const newIssues = response.data.map((issue) => {
-            const {
-              number,
-              title,
-              user: { login, avatar_url },
-              created_at,
-              comments,
-              body,
-            } = issue;
-
-            return {
-              number,
-              title,
-              login,
-              avatar_url,
-              created_at,
-              comments,
-              body,
-            };
+            return changeObjProps(issue);
           });
 
           setIssues((prevIssues) => [...prevIssues, ...newIssues]);
           setHasNextPage(Boolean(newIssues.length));
+          setIsLoading(false);
+        } else if (response.status === 200 && typeof response.data === 'object') {
+          const newIssues = changeObjProps(response.data);
+          setIssues(newIssues);
           setIsLoading(false);
         } else {
           setIsLoading(false);
@@ -59,7 +66,7 @@ function useRequests(params) {
       }
     }
     fetchData();
-  }, [params]);
+  }, [fetchFunction, params]);
 
   return { issues, isLoading, isError, hasNextPage };
 }
