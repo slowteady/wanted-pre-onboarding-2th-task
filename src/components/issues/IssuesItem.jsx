@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 const changeDateFormat = (createAt) => {
@@ -8,6 +8,8 @@ const changeDateFormat = (createAt) => {
 };
 
 function IssuesItem({ issues }, ref) {
+  const params = useParams();
+  const isIdExist = Boolean(params.id);
   const navigate = useNavigate();
 
   const { number, title, login, created_at, comments } = issues;
@@ -21,7 +23,7 @@ function IssuesItem({ issues }, ref) {
       <IssuesDiv>
         <IssuesNumTitleDiv>
           <IssueNumSpan>{number}</IssueNumSpan>
-          <IssueTitleSpan onClick={naviDetail} title={title}>
+          <IssueTitleSpan isIdExist={isIdExist} onClick={isIdExist ? undefined : naviDetail} title={title}>
             {title}
           </IssueTitleSpan>
         </IssuesNumTitleDiv>
@@ -64,7 +66,7 @@ const IssueNumSpan = styled.span`
 
 const IssueTitleSpan = styled.span`
   font-weight: bold;
-  cursor: pointer;
+  cursor: ${(props) => (props.isIdExist ? 'auto' : 'pointer')};
 `;
 
 const IssueDateWriterDiv = styled.div`
