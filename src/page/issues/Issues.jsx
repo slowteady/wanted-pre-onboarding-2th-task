@@ -52,7 +52,7 @@ function Issues() {
       {pathname.startsWith(`${routerPaths.issues.path}/`) && id ? (
         <IssuesDetail id={id} issues={issues} />
       ) : (
-        <IssuesList id={id} issues={issues} hasNextPage={hasNextPage} setPage={setPage} />
+        <IssuesList issues={issues} hasNextPage={hasNextPage} setPage={setPage} />
       )}
     </>
   );
