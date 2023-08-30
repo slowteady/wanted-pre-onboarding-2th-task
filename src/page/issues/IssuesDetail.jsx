@@ -13,7 +13,7 @@ function IssuesDetail({ id, issues }) {
       <IssueDetailDiv>
         <IssueImgItemDiv>
           <IssueDetailUserImg src={avatar_url} />
-          <IssuesItem issues={issueObj} isDetail={true}/>
+          <IssuesItem issues={issueObj} />
         </IssueImgItemDiv>
         <IssueContentDiv>
           <div dangerouslySetInnerHTML={{ __html: htmlBody }} />
