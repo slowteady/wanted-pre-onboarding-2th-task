@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const changeDateFormat = (createAt) => {
@@ -7,6 +8,8 @@ const changeDateFormat = (createAt) => {
 };
 
 function IssuesItem({ issues }) {
+  const navigate = useNavigate();
+
   const {
     number,
     title,
@@ -15,12 +18,18 @@ function IssuesItem({ issues }) {
     comments,
   } = issues;
 
+  const naviDetail = () => {
+    navigate(`/issues/${number}`);
+  };
+
   return (
     <Li key={number}>
       <IssuesDiv>
         <IssuesNumTitleDiv>
           <IssueNumSpan>{number}</IssueNumSpan>
-          <IssueTitleSpan title={title}>{title}</IssueTitleSpan>
+          <IssueTitleSpan onClick={naviDetail} title={title}>
+            {title}
+          </IssueTitleSpan>
         </IssuesNumTitleDiv>
         <IssueDateWriterDiv>
           <span>
