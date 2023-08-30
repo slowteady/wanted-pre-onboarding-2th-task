@@ -1,6 +1,6 @@
-import { BrowserRouter } from "react-router-dom";
-import styled from "styled-components";
-import Router from "./router/Router";
+import { BrowserRouter } from 'react-router-dom';
+import styled from 'styled-components';
+import Router from './router/Router';
 
 function App() {
   return (
@@ -18,7 +18,6 @@ const Wrap = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: nowrap;
-  overflow: hidden;
   flex-direction: column;
   justify-content: center;
 `;
