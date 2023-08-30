@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const WANTED = {
@@ -7,9 +7,9 @@ const WANTED = {
   URL: 'https://www.wanted.co.kr/',
 };
 
-function AdBanner() {
+function AdBanner(props, ref) {
   return (
-    <Li>
+    <Li ref={ref}>
       <a href={WANTED.URL}>
         <img alt="AdBanner" src={WANTED.IMG_URL} />
       </a>
@@ -26,4 +26,4 @@ const Li = styled.li`
   justify-content: center;
 `;
 
-export default AdBanner;
+export default forwardRef(AdBanner);
