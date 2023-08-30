@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import AdBanner from '../../components/issues/AdBanner';
 import IssuesItem from '../../components/issues/IssuesItem';
@@ -47,4 +47,4 @@ const Ul = styled.ul`
   overflow: auto;
 `;
 
-export default IssuesList;
+export default memo(IssuesList);
