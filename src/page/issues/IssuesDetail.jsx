@@ -1,19 +1,31 @@
 import { marked } from 'marked';
 import React, { memo } from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { getIssuesDetail } from '../../api/issuesApi';
 import IssuesItem from '../../components/issues/IssuesItem';
+import Loading from '../../components/loading/Loading';
+import useRequests from '../../hooks/useRequests';
 
-function IssuesDetail({ id, issues }) {
-  const issueObj = issues.find((issue) => issue.number === parseInt(id));
-  if (issueObj) {
-    const { avatar_url, body } = issueObj;
+function IssuesDetail() {
+  const param = useParams();
+  const id = param.id;
+
+  const { issues, isLoading } = useRequests(getIssuesDetail, id);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (issues && Object.keys(issues).length > 0) {
+    const { avatar_url, body } = issues;
     const htmlBody = marked(body);
 
     return (
       <IssueDetailDiv>
         <IssueImgItemDiv>
           <IssueDetailUserImg src={avatar_url} />
-          <IssuesItem issues={issueObj} />
+          <IssuesItem issues={issues} />
         </IssueImgItemDiv>
         <IssueContentDiv>
           <div dangerouslySetInnerHTML={{ __html: htmlBody }} />
@@ -25,7 +37,7 @@ function IssuesDetail({ id, issues }) {
 
 const IssueDetailDiv = styled.div`
   max-height: 600px;
-  width: 700px;
+  width: 800px;
   padding: 0px;
   overflow: auto;
   margin-top: 16px;
