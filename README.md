@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# 이용민 - Week2 - 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+프리온보딩 2주차에 진행한 과제물입니다.  
+기간 : 2023.08.29. ~ 2023.09.01.  
 
-## Available Scripts
+## 배포 링크
 
-In the project directory, you can run:
+[배포 링크](https://wanted-pre-onboarding-0213.du.r.appspot.com/)
 
-### `npm start`
+## 수행자
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<table border>
+  <tbody>
+    <tr>
+      <td align="center" width="100px">
+        <img width="100%" src="https://avatars.githubusercontent.com/u/68311202?s=96&v=4" alt="이용민"/>
+        <a href="https://github.com/slowteady">
+          <img src="https://img.shields.io/badge/이용민-1E90FF?style=flat-round&logo=GitHub&logoColor=white"/>
+        </a>
+      </td>
+     </tr>
+  </tbody>
+</table>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 실행 방법
 
-### `npm test`
+1. 로컬 환경에 프로젝트 복사본 생성
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/slowteady/wanted-pre-onboarding-2th-task.git
+```
 
-### `npm run build`
+2. 프로젝트 폴더로 이동
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+cd wanted-pre-onboarding-2th-task
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. 프로젝트 종속성 설치
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+4. 프로젝트 실행
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 기술 스택
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![React](https://img.shields.io/badge/ReactJS-61DAFB?style=for-the-badge&logo=React&logoColor=white)
+![Javascript](https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white)
+![styledComponents](https://img.shields.io/badge/styledComponents-DB7093?style=for-the-badge&logo=styledComponents&logoColor=white)
+![GoogleCloud](https://img.shields.io/badge/GoogleCloud-4285F4?style=for-the-badge&logo=GoogleCloud&logoColor=white)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 프로젝트 구조
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+src/
+  ├── api/
+  │   ├── apiClient.js
+  │   └── issuesApi.js
+  ├── components/
+  │   ├── issues/
+  │   │   ├── AdBanner.jsx
+  │   │   ├── IssuesItem.js
+  │   │   └── IssuesList.jsx
+  │   └── loading/
+  │       └── Loading.jsx
+  ├── hooks/
+  │   └── useRequests.js
+  ├── page/
+  │   ├── error/
+  │   │   └── Error.jsx
+  │   └── issues/
+  │       ├── Issues.jsx
+  │       └── IssuesDetail.jsx
+  ├── router/
+  │   ├── Router.jsx
+  │   └── routerPaths.js
+  ├── utils/
+  │   └── message/
+  │       └── errorMessage.js
+  ├── App.jsx
+  └── index.jsx
+```
