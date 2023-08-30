@@ -4,7 +4,6 @@ import { getIssuesList } from '../../api/issuesApi';
 import IssuesList from '../../components/issues/IssuesList';
 import Loading from '../../components/loading/Loading';
 import useRequests from '../../hooks/useRequests';
-import routerPaths from '../../router/routerPaths';
 
 const QUERY_PARAMS = {
   state: 'open',
@@ -28,7 +27,7 @@ function Issues() {
     };
   }, [page]);
 
-  const { issues, isLoading, isError, hasNextPage } = useRequests(getIssuesList, params, routerPaths.issues.name);
+  const { issues, isLoading, isError, hasNextPage } = useRequests(getIssuesList, params);
 
   if (isError) {
     navigate('/error');
