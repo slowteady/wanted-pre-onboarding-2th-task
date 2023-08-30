@@ -19,6 +19,7 @@ function Issues() {
 }
 
 const Header = styled.header`
+  font-weight: bold;
   font-size: 32px;
   margin: 0 0 25px;
   border-bottom: 1px solid black;
