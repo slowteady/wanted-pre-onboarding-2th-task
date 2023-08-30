@@ -2,9 +2,8 @@ import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const WANTED = {
-  IMG_URL:
-    'https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100',
-  URL: 'https://www.wanted.co.kr/',
+  IMG_URL: process.env.REACT_APP_WANTED_IMG_URL,
+  URL: process.env.REACT_APP_WANTED_URL,
 };
 
 function AdBanner(props, ref) {
