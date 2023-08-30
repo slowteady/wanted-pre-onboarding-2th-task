@@ -1,5 +1,5 @@
-import { apiClient } from "./apiClient";
+import { apiClient } from './apiClient';
 
 export const getIssuesList = (params) => {
-  return apiClient.get("", params);
+  return apiClient.get('', params);
 };
