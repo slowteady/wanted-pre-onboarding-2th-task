@@ -42,7 +42,7 @@ function IssuesList({ issues, hasNextPage, setPage }) {
 
 const Ul = styled.ul`
   max-height: 600px;
-  width: 700px;
+  width: 800px;
   padding: 0px;
   overflow: auto;
 `;

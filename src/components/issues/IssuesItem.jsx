@@ -52,7 +52,7 @@ const IssuesDiv = styled.div`
 `;
 
 const IssuesNumTitleDiv = styled.div`
-  max-width: 550px;
+  max-width: 600px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
