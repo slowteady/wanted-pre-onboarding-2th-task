@@ -1,5 +1,5 @@
-import { marked } from 'marked';
 import React, { memo } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getIssuesDetail } from '../../api/issuesApi';
@@ -19,7 +19,6 @@ function IssuesDetail() {
 
   if (issues && Object.keys(issues).length > 0) {
     const { avatar_url, body } = issues;
-    const htmlBody = marked(body);
 
     return (
       <IssueDetailDiv>
@@ -28,7 +27,7 @@ function IssuesDetail() {
           <IssuesItem issues={issues} />
         </IssueImgItemDiv>
         <IssueContentDiv>
-          <div dangerouslySetInnerHTML={{ __html: htmlBody }} />
+          <ReactMarkdown>{body}</ReactMarkdown>
         </IssueContentDiv>
       </IssueDetailDiv>
     );
