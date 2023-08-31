@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getIssuesDetail } from '../../api/issuesApi';
 import IssuesItem from '../../components/issues/IssuesItem';
@@ -10,8 +10,13 @@ import useRequests from '../../hooks/useRequests';
 function IssuesDetail() {
   const param = useParams();
   const id = param.id;
+  const navigate = useNavigate();
 
-  const { issues, isLoading } = useRequests(getIssuesDetail, id);
+  const { issues, isError, isLoading } = useRequests(getIssuesDetail, id);
+
+  if (isError) {
+    navigate('/error');
+  }
 
   if (isLoading) {
     return <Loading />;
