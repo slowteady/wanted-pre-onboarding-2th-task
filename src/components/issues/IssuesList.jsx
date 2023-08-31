@@ -29,12 +29,22 @@ function IssuesList({ issues, hasNextPage, setPage }) {
       {issues.map((issue, index) => {
         if (issues.length === index + 1) {
           return (index + 1) % 5 === 0 ? (
-            <AdBanner ref={lastIssueRef} key={index} />
+            <div key={issue.number} ref={lastIssueRef}>
+              <AdBanner />
+              <IssuesItem issues={issue} />
+            </div>
           ) : (
             <IssuesItem ref={lastIssueRef} key={issue.number} issues={issue} />
           );
         }
-        return (index + 1) % 5 === 0 ? <AdBanner key={index} /> : <IssuesItem key={issue.number} issues={issue} />;
+        return (index + 1) % 5 === 0 ? (
+          <div key={issue.number} ref={lastIssueRef}>
+            <AdBanner />
+            <IssuesItem issues={issue} />
+          </div>
+        ) : (
+          <IssuesItem key={issue.number} issues={issue} />
+        );
       })}
     </Ul>
   );
