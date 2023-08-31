@@ -10,7 +10,8 @@ function Router() {
   const routes = useRoutes([
     {
       path: routerPaths.home.path,
-      element: <Navigate to={routerPaths.issues.path} replace />,
+      element: <Navigate to={routerPaths.issues.path} />,
+      replace: true,
     },
     {
       path: routerPaths.issues.path,
@@ -25,7 +26,8 @@ function Router() {
     },
     {
       path: routerPaths.errorRedirect.path,
-      element: <Navigate to={routerPaths.error.path} replace />,
+      element: <Navigate to={routerPaths.error.path} />,
+      replace: true,
     },
     {
       path: routerPaths.error.path,
