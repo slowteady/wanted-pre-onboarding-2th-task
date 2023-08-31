@@ -66,7 +66,7 @@ src/
   ├── components/
   │   ├── issues/
   │   │   ├── AdBanner.jsx
-  │   │   ├── IssuesItem.js
+  │   │   ├── IssuesItem.jsx
   │   │   └── IssuesList.jsx
   │   └── loading/
   │       └── Loading.jsx
@@ -87,3 +87,9 @@ src/
   ├── App.jsx
   └── index.jsx
 ```
+
+### 코드리뷰  
+
+---
+
+[코드리뷰용 소스분석](https://github.com/slowteady/wanted-pre-onboarding-2th-task/blob/main/source-guide.md)
